@@ -1,0 +1,17 @@
+version = '0.1'
+
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+  dependencies {
+    classpath group: 'com.sonamine', name: 'gradle-plugin-r', version: '1.0-SNAPSHOT'
+  }
+}
+apply plugin: 'rpackage'
+
+rpackage {
+  packageDir = 'pkg'
+  packageName = 'rsql'
+}

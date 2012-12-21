@@ -1,0 +1,18 @@
+Package: rsql
+Version: 0.1
+Type: Package
+Title: Construct SQL expressions from R expressions
+Date: 2012-09-20
+Author: Jamie F Olson
+Maintainer: Jamie F Olson <jamie@sonamine.com>
+Description: More will be forthcoming
+License: None
+Depends: R (>= 2.14.0), stringr, methods
+Collate:
+    '0methods.R'
+    'quote.R'
+    'rsql.R'
+    'rsql_statement.R'
+    'sql_functions.R'
+    'to_sql.R'
+    'zzz.R'

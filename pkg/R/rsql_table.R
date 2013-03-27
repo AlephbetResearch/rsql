@@ -92,6 +92,7 @@ setMethod('as.character',
   )
 
 
+#' Overloading the $ operator for access to column references
 #' @export
 setMethod('$',
     "rsql_table",

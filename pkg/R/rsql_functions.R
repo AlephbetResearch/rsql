@@ -60,7 +60,19 @@ rsql_select <- function(data,expr){
 
 assign('select',rsql_select,envir=rsql_function_env)
 
-#' Create a SQL union
+#' Create a SQL union of two select statements
+#'
+#' @param e1 first statement
+#' @param e2 second statement
+#' @param ... additional statements
+#' @param all logical value, whether or not to UNION ALL
+#'
+#' @examples
+#' library(rsql)
+#' sel1 = tab.select(.(x))
+#' sel2 = tab.select(.(y))
+#' to_sql(rsql_union(sel1,sel2))
+#'
 #' @export
 rsql_union <- function(e1,e2,...,all=TRUE) {
   rsql.from = as.call(eval(substitute(list(quote(union),e1,e2,...,all=all))))
@@ -88,6 +100,7 @@ rsql_unquote <- function(expr) {
   }
 }
 
+#' Evaluate any bquoted expressions and substitute actual column references.
 rsql_substitute <- function(args,colrefs=list()) {
   if (is(args,"list")) {
     lapply(args,rsql_substitute,colrefs=colrefs)
@@ -113,7 +126,7 @@ rsql_substitute <- function(args,colrefs=list()) {
   }
 }
 
-#' Infer the column names from a list of quoted rsql expressions
+#' Generate the column names from a list of quoted rsql expressions
 #' @param x a list a quoted rsql expressions
 #' @export
 rsql_colnames <- function(x) {
@@ -143,7 +156,16 @@ rsql_colnames <- function(x) {
       xnames
 }
 
-
+#' Create quoted column references from column names and a table name or alias
+#'
+#' @param colnames column names
+#' @param alias table name or alias
+#'
+#' @examples
+#'
+#' library(rsql)
+#' rsql_colrefs(c("x","y"),"tab")
+#'
 #' @export
 rsql_colrefs <- function(colnames,alias=NULL) {
   if (!is.null(alias)) {

@@ -226,7 +226,7 @@ all.vars.default <- function(expr,...){
   base::all.vars(expr,...)
 }
 
-#' @S3 method all.cars quoted
+#' @S3 method all.vars quoted
 #' @export
 all.vars.quoted <- function(expr,...,unique=TRUE) {
   vars = unlist(lapply(expr,all.vars,...,unique=unique))

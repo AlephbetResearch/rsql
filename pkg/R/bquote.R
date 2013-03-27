@@ -1,4 +1,17 @@
-# just like regular bquote, but unlists results
+#' Just like regular bquote, but unlists results
+#'
+#' Very similar to the base:bquote, but when the expression evaluates to a list,
+#' the results are inserted into the quoted expression.
+#'
+#' @param expr the quoted expression
+#' @param where the environment in which to evaluate any expressions
+#'
+#' @export
+#' @examples
+#' a= list(quote(b),quote(c))
+#' bquote(quote(f(.(a)))) #f(list(b, c))
+#' library(rsql)
+#' sql_bquote(quote(f(.(a)))) #f(b, c)
 sql_bquote <- function (expr, where = parent.frame()) 
 {
   unquote <- function(e) {

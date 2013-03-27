@@ -72,11 +72,14 @@ setClass(
       optional=list()),
     )
 
+# This is the order for SQL commands in a SELECT statement
+# This is used when adding commands to a SELECT statement
 sql_order = c("where","group_by","having","order_by","limit")
 
 #' Explicitly create a \code{rsql_select_statement} object
 #'
-#' This should not need to be called by users. 
+#' This should not need to be called by users. Users should
+#' instead use rsql_select.
 #'
 #' @export
 rsql_select_statement <- function(select=list(),from=list(),
@@ -108,6 +111,7 @@ rsql_select_statement <- function(select=list(),from=list(),
   x
 }
 
+#' Generic method for to_sql
 #' @export
 to_sql.rsql_select_statement <- function(x) {
       paste(unlist(c(
@@ -116,7 +120,8 @@ to_sql.rsql_select_statement <- function(x) {
         lapply(x@optional,to_sql))),
           collapse="\n")
       }
- 
+
+#' Generic method for to_sql
 #' @export
 setMethod("to_sql",
     "rsql_select_statement",
@@ -125,6 +130,9 @@ setMethod("to_sql",
 
 sql_from_clauses = c("from","join")
 
+#' Function for merging SELECT statements with additional elements
+#'
+#' In most cases, this should not be used directly by users.
 #' @export
 `+.rsql_select_statement` <- function(e1,e2) {
   if (is(e2,"rsql_select_statement")) {
@@ -163,6 +171,7 @@ setMethod("+",
     `+.rsql_select_statement`
    )
 
+#' Generic method for show
 #' @export
 setMethod("show",
     "rsql_select_statement",
@@ -177,6 +186,7 @@ setMethod("show",
       show(object@optional)
       })
 
+#' Generic method for print
 #' @export
 setMethod("print",
     "rsql_select_statement",
@@ -184,6 +194,7 @@ setMethod("print",
       print(as.character(x,...))
    )
 
+#' Overloading the $ operator for access to column references
 #' @export
 setMethod('$',
     "rsql_select_statement",

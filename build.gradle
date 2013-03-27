@@ -6,12 +6,12 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath group: 'com.sonamine', name: 'gradle-plugin-r', version: '1.0-SNAPSHOT'
+    classpath group: 'com.jfolson', name: 'gradle-plugin-r', version: '0.1-SNAPSHOT'
   }
 }
 apply plugin: 'rpackage'
 
 rpackage {
-  packageDir = 'pkg'
-  packageName = 'rsql'
+  srcDir = file('pkg')
+  name = 'rsql'
 }

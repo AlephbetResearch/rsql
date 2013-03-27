@@ -2,10 +2,10 @@ Package: rsql
 Version: 0.1
 Type: Package
 Title: Construct SQL expressions from R expressions
-Date: 2012-09-20
+Date: 2013-01-27
 Author: Jamie F Olson
-Maintainer: Jamie F Olson <jamie@sonamine.com>
-Description: More will be forthcoming
+Maintainer: Jamie F Olson <jamie.f.olson@gmail.com>
+Description: Programmatic construction of SQL statements using R expression.
 License: None
 Depends: R (>= 2.14.0), stringr, methods
 Collate:

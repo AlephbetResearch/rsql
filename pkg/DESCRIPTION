@@ -10,9 +10,14 @@ License: None
 Depends: R (>= 2.14.0), stringr, methods
 Collate:
     '0methods.R'
-    'quote.R'
+    '0classes.R'
+    'quoted.R'
+    'bquote.R'
     'rsql.R'
     'rsql_statement.R'
     'sql_functions.R'
+    'rsql_functions.R'
+    "rsql_table.R"
     'to_sql.R'
     'zzz.R'
+RoxygenNote: 6.0.1
